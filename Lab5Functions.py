@@ -4,8 +4,6 @@ import numpy as np
 import math
 
 
-
-
 def getRandomGraph(n, m, maxWeight):
     adj_matrix = np.zeros((n, n), dtype=int)
 
