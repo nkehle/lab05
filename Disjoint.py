@@ -20,6 +20,3 @@ class Graph:
                 self.dict[key] = u
         return u
 
-
-def Graph2DisjointSets(A):
-    return
