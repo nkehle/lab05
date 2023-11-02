@@ -29,16 +29,36 @@ def Graph2DisjointSets(A):
     return g1
 
 
+def kraskuls_algorithm(G):
+    graph = Disjoint.Graph()
+    edges = []
+    A = []
+
+    # get the list of edges
+    for i in range(G.shape[0]):
+        for j in range(i + 1, G.shape[1]):
+            if G[i, j] != 0:
+                edges.append((i, j, G[i, j]))
+
+    sorted(edges, key=lambda x: x[2])
+
+    for i in range(len(G)):
+        graph.make_set(i)
+
+    for edge in edges:
+        u = edge[0]
+        v = edge[1]
+        if graph.find_set(u) != graph.find_set(v):
+            A.append((graph.find_set(u), graph.find_set(v)))
+            graph.union(u, v)
+
+    return A
+
+
 def test():
-    A = getRandomGraph(10, 10, 10)
-    g1 = Graph2DisjointSets(A)
-    g1.union('1', '2')
-    g1.union('2', '3')
-    g1.union('3', '4')
-    g1.union('4', '5')
-    g1.union('5', '6')
-    g1.union('6', '7')
-    print(g1.dict)
+    A = getRandomGraph(3, 3, 3)
+    print(A)
+    print(kraskuls_algorithm(A))
+
 
 test()
-
