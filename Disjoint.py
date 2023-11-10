@@ -1,4 +1,8 @@
-# Test git
+# Noa Kehle and Andrew Okerlund
+# nkehle@calpoly.edu apokerlu@calpoly.edu
+# CSC3-349-01 -- Fall 2023
+# Lab 5
+
 
 class Graph:
     def __init__(self):
@@ -20,10 +24,3 @@ class Graph:
                 self.dict[key] = v
         return u
 
-# g1 = Graph()
-# g1.make_set('0')
-# g1.make_set('1')
-# g1.make_set('2')
-# print(g1.dict)
-# g1.union('0', '1')
-# print(g1.dict)
