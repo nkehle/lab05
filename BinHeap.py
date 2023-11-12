@@ -19,7 +19,7 @@ class BinHeap:
         label, key = x
         self.heap.append((label, float('inf')))
         self.nodes[label] = {"index": len(self.heap) - 1, "parent": -1}
-        self.decrease_key(label, key)
+        self.decrease_key(label, key)   # this will adjust inside with heapify
 
     def find_min(self):
         return self.heap[0]
@@ -27,12 +27,15 @@ class BinHeap:
     def delete_min(self):
         if not self.heap:
             return None
+
         min_element = self.heap[0]
         last_element = self.heap.pop()
+
         if self.heap:
             self.heap[0] = last_element
             self.nodes[last_element[0]]["index"] = 0
             self.heapify(0)
+
         del self.nodes[min_element[0]]
         return min_element
 
@@ -43,9 +46,9 @@ class BinHeap:
         index = self.nodes[label]["index"]
         if new_key < self.heap[index][1]:
             self.heap[index] = (label, new_key)
-            self._bubble_up(index)
+            self.perc_up(index)     # rearranges the heap
 
-    def _bubble_up(self, i):
+    def perc_up(self, i):
         while i > 0:
             parent = (i - 1) // 2
             if self.heap[i][1] < self.heap[parent][1]:
@@ -76,11 +79,11 @@ class BinHeap:
 
 
 # Example usage:
-heap = BinHeap()
+"""heap = BinHeap()
 heap.init_list(["1", "2", "3", "4", "5"], "3")
 print(heap.heap)
 heap.insert(("6", -100))
-print(heap.heap)
+print(heap.heap)"""
 
 
 
