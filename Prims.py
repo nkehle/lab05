@@ -12,6 +12,7 @@ def prim_mst(adjacency_matrix):
     # Initialization step
     for v in range(num_vertices):
         que.insert((v, float('inf')))
+
     start_vertex = 0
     que.decrease_key(start_vertex, 0)
 

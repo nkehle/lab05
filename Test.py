@@ -15,9 +15,12 @@ def test():
     A = np.array([[0, 2, 3],
                   [2, 0, 1],
                   [3, 1, 0]])
+
     print("Adjacency Matrix:\n", A)
     print("Kruskals: ", Kruskals.kruskals_mst(A))
     print("Prims: ", Prims.prim_mst(A))
+    print("------------------------")
+    print("Expected: (0, 1), (1, 2)")
 
 
 def getRandomGraph(n, m, maxWeight):
