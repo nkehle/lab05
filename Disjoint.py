@@ -3,6 +3,15 @@
 # CSC3-349-01 -- Fall 2023
 # Lab 5
 
+"""
+    Implementation of a disjoint-set data structure for union-find operations.
+
+    Methods:
+    - __init__(): Initialize an empty dictionary to represent the disjoint sets.
+    - make_set(key): Add a new set with the given key.
+    - find_set(v): Find the representative (label) of the set containing vertex v.
+    - union(v, u): Union the sets containing vertices v and u.
+"""
 
 class Graph:
     def __init__(self):

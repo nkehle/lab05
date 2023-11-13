@@ -2,9 +2,16 @@
 # nkehle@calpoly.edu apokerlu@calpoly.edu
 # CSC3-349-01 -- Fall 2023
 # Lab 5
-import numpy as np
+
 import Disjoint
 
+"""
+    Finds the Minimum Spanning Tree (MST) of a connected, undirected graph using Kruskal's algorithm.
+    Parameters:
+        - G (2D array): Adjacency matrix representing the graph.
+    Returns:
+        - result (list): List of edges forming the MST.
+    """
 def kruskals_mst(G):
     num_vertices = len(G)
     edges = []
@@ -37,13 +44,3 @@ def kruskals_mst(G):
 
     return result
 
-
-B  = np.array([
-    [0, 3, 2, 0],
-    [3, 0, 0, 1],
-    [2, 0, 0, 5],
-    [0, 1, 5, 0]
-])
-
-print("Adjacency Matrix:\n", B)
-print("Kruskals: ", kruskals_mst(B))

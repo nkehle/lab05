@@ -2,9 +2,20 @@
 # nkehle@calpoly.edu apokerlu@calpoly.edu
 # CSC3-349-01 -- Fall 2023
 # Lab 5
-import heapq
 
+"""
+    Implementation of a binary heap as the priority queue 
 
+    Methods:
+    - init_list(v, s): Initialize the heap with a list of vertices and a starting vertex.
+    - insert(x): Insert a new element into the heap.
+    - find_min(): Return the element with the minimum key.
+    - delete_min(): Remove and return the element with the minimum key.
+    - decrease_key(label, new_key): Decrease the key of a specified element in the heap.
+    - perc_up(i): Move an element up the heap to maintain the heap property.
+    - heapify(i): Heapify the subtree rooted at the specified index.
+    - swap(i, j): Swap elements at indices i and j in the heap and update their indices in the associative dictionary.
+    """
 class BinHeap:
     def __init__(self):
         self.heap = []
@@ -79,108 +90,4 @@ class BinHeap:
         self.nodes[self.heap[i][0]]["index"] = i
         self.nodes[self.heap[j][0]]["index"] = j
 
-
-# Example usage:
-"""heap = BinHeap()
-heap.init_list(["1", "2", "3", "4", "5"], "3")
-print(heap.heap)
-heap.insert(("6", -100))
-print(heap.heap)"""
-
-
-
-"""pq.insert(("6", 2))
-print(pq.heap)
-print(pq.nodes)
-
-pq.decrease_key("1", 4)
-print(pq.heap)
-print(pq.nodes)
-
-print(pq.find_min())
-print(pq.delete_min())
-print(pq.heap)
-print(pq.nodes)"""
-
-
-"""from heapq import heappush, heappop, heapify
-
-
-structure for the tuple is (key, label)
-class BinHeap:
-    # init the python list to structure the heap
-    def __init__(self):
-        self.heap = []
-
-    # returns the location of the parent for any index i
-    def parent(self, i):
-        return self.heap[(i-1)/2]
-
-    # initialize the bin heap based on the list of v objects Ex -> [(1, 5), (2, 3), (3, 8), (4, 1)]
-    def init_list(self, v, s):
-        for tuple in v:
-            self.heap.append((tuple[1], tuple[0]))
-
-        self.heap[0] = (s[1], s[0]) # place s as the root
-        heapify(self.heap)  # rearrange
-
-    # insert an object v, ex [1, 2] vertex 1 with key 2
-    def insert(self, v):
-        new_v = (v[1],v[0])
-        heappush(self.heap, new_v)
-
-    # returns the object with the smallest key
-    def find_min(self):
-        return self.heap[0]
-
-    # return the object with the smallest key and delete the object from the heap
-    def delete_min(self):
-        return heappop(self.heap)
-
-    # find the object with the given label and decrease its key to the new key
-    def decrease_key(self, label, new_key):
-        index = self.find_index(label)
-        self.heap[index] = (label, new_key)  # update the key
-        heapify(self.heap)  # rearrange
-
-    # finds the index that has the matching target label
-    def find_index(self, target):
-        for i in range(len(self.heap)):
-            if self.heap[i] == target:
-                return i
-        # if not found
-        return -1
-
-    # prints the tree with some spacing
-    def print_tree(self):
-        height = (len(self.heap) - 1).bit_length()
-        current_level = 0
-        current_position = 0
-
-        while current_level < height:
-            nodes_in_level = 2 ** current_level
-            spacing = (height - current_level) * 5
-            mid = 1
-
-            for _ in range(nodes_in_level):
-                if current_position < len(self.heap):
-                    node = self.heap[current_position]
-                    print(' ' * spacing, f"({node[1]}, {node[0]})", end=" " * (mid - 1))
-                    current_position += 1
-                else:
-                    break
-            print()
-            current_level += 1
-
-
-v = [(1, 5), (2, 2), (3, 21)]
-que = BinHeap()
-que.init_list(v, (1, 5))
-print(que.heap, '\n')
-que.print_tree()
-
-que.insert((4, 0))
-print(que.heap, '\n')
-que.print_tree()
-"""
 
