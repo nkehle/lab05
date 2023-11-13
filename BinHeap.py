@@ -2,6 +2,8 @@
 # nkehle@calpoly.edu apokerlu@calpoly.edu
 # CSC3-349-01 -- Fall 2023
 # Lab 5
+import heapq
+
 
 class BinHeap:
     def __init__(self):

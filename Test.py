@@ -18,9 +18,10 @@ import Disjoint
 import Kruskals
 import Prims
 
+
 def test():
     # Example usage:
-    #A = getRandomGraph(3, 3, 3)
+    # A = getRandomGraph(3, 3, 3)
     A = np.array([[0, 2, 3],
                   [2, 0, 1],
                   [3, 1, 0]])
@@ -35,7 +36,7 @@ def test():
 def getRandomGraph(n, m, maxWeight):
     adj_matrix = np.zeros((n, n), dtype=int)
 
-    if(m > n):
+    if (m > n):
         print(adj_matrix)
         return adj_matrix
 
@@ -47,6 +48,7 @@ def getRandomGraph(n, m, maxWeight):
 
     np.fill_diagonal(adj_matrix, 0)
     return adj_matrix
+
 
 def Graph2DisjointSets(A):
     g1 = Disjoint.Graph()
@@ -75,15 +77,15 @@ def compareTime(sizes):
         edges = [int(size * density) for density in edge_densities]
 
         for j in range(repeats):
-            arr = getRandomGraph(size,size, 50)
+            arr = getRandomGraph(size, size, 50)
 
             # run the quick sort and time
-            #kruskal_time = timeit.timeit(lambda: Kruskals.kruskals_mst(arr), setup="pass", number=1)
-            #kruskals_count += kruskal_time
-            #kruskals_runtimes.append(kruskal_time)
+            kruskal_time = timeit.timeit(lambda: Kruskals.kruskals_mst(arr), setup="pass", number=1)
+            kruskals_count += kruskal_time
+            kruskals_runtimes.append(kruskal_time)
 
             # run the random and time
-            prims_time = timeit.timeit(lambda: CorrectPrim.prim_mst(arr), setup="pass", number=1)
+            prims_time = timeit.timeit(lambda: Prims.prim_mst(arr), setup="pass", number=1)
             prims_count += prims_time
             prims_runtimes.append(prims_time)
 
@@ -91,14 +93,13 @@ def compareTime(sizes):
         avg_kruskals.append(round((kruskals_count / repeats), 5))  # round to 5 decimals
         avg_prims.append(round((prims_count / repeats), 5))  # round to 5 decimals
 
-
     return avg_kruskals, avg_prims
 
 
 ''' ** PLOTTING THE GRAPHS WITH AVERAGE TIMES ** '''
 
 # Example usage with sizes ranging from 5 to 10
-sizes = (5, 10, 25, 50, 100)
+sizes = (5, 10, 20, 50, 100)
 avg_kruskals, avg_prims = compareTime(sizes)
 print("Kruskals AVG: ", avg_kruskals, "\nPrims AVG:    ", avg_prims)
 
@@ -116,5 +117,3 @@ plt.legend()
 
 # show plotting
 plt.show()
-
-

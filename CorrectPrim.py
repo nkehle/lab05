@@ -39,7 +39,7 @@ def prim_mst(adjacency_matrix):
     return mst
 
 
-B  = np.array([
+"""B  = np.array([
     [0, 3, 2, 0],
     [3, 0, 0, 1],
     [2, 0, 0, 1],
@@ -57,6 +57,6 @@ adjacency_matrix = np.array([
     [5, 4, 8, 2, 7, 3, 10, 0, 6, 1],
     [1, 9, 6, 5, 3, 4, 7, 10, 0, 2],
     [10, 2, 4, 8, 6, 5, 1, 2, 3, 0]
-])
+])"""
 
-print("Kruskals: ", prim_mst(adjacency_matrix))
+#print("Kruskals: ", prim_mst(adjacency_matrix))
