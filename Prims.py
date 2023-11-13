@@ -1,62 +1,59 @@
-# Noa Kehle and Andrew Okerlund
-# nkehle@calpoly.edu apokerlu@calpoly.edu
-# CSC3-349-01 -- Fall 2023
-# Lab 5
-import numpy as np
-import BinHeap
+
 import random
+import BinHeap
+import numpy as np
+import Lab5Functions
 
-
-def prim_mst(adjacency_matrix):
-    num_vertices = len(adjacency_matrix)
-    que = BinHeap.BinHeap()
+def prim_mst(G):
     mst = []
+    v_list = Lab5Functions.verticelist(G)
+    adj_list = Lab5Functions.adjacency_list(G)
+    queue = BinHeap.BinHeap()
+    #queue.init_list(v_list, G[0])
+    #print(queue.heap)
 
-    # Initialization step
-    for v in range(num_vertices):
-        que.insert((v, float('inf')))
+    for v in v_list:
+        queue.insert((v, float('inf')))
 
     start_vertex = 0
-    que.decrease_key(start_vertex, 0)
+    queue.decrease_key(start_vertex, 0)
 
-    while que.heap:  # retrieve nodes from priority queue
-        u = que.delete_min()
-        u_label = u[0]
+    #print(queue.heap)
 
-        # Adjust distances
-        for v in range(num_vertices):
-            if adjacency_matrix[u_label, v] > 0 and que.nodes.get(v) is not None:
-                weight = adjacency_matrix[u_label, v]
-                if weight < que.heap[que.nodes[v]["index"]][1]:
-                    que.decrease_key(v, weight)
-                    mst.append((u_label, v, weight))  # Include weight in mst
+    while queue.heap:
+        u = queue.delete_min()
+        v_list.remove(u[0])
 
+        print(u)
+        for v in adj_list[u[0]]:
+
+            if v in v_list:
+                weight = G[u[0], v]
+                if weight < queue.heap[queue.nodes[v]["index"]][1]:
+                    print(weight)
+
+                    queue.decrease_key(v, weight)
+                    mst.append((u[0], v))  # Include weight in mst
     return mst
 
-def getRandomGraph(n, m, maxWeight):
-    adj_matrix = np.zeros((n, n), dtype=int)
-
-    if(m > n):
-        print(adj_matrix)
-        return adj_matrix
-
-    for i in range(0, m):
-        for j in range(0, n):
-            edge_weight = random.randint(1, maxWeight)
-            adj_matrix[i][j] = edge_weight
-            adj_matrix[j][i] = edge_weight
-
-    np.fill_diagonal(adj_matrix, 0)
-    return adj_matrix
-
-
-
-A = np.array([
+B  = np.array([
     [0, 3, 2, 0],
     [3, 0, 0, 1],
-    [2, 0, 0, 5],
-    [0, 1, 5, 0]
+    [2, 0, 0, 1],
+    [0, 1, 1, 0]
 ])
 
-print("Adjacency Matrix:\n", A)
-print("Kruskals: ", prim_mst(A))
+adjacency_matrix = np.array([
+    [0, 8, 2, 6, 1, 7, 3, 5, 9, 10],
+    [9, 0, 3, 7, 2, 10, 6, 4, 1, 8],
+    [2, 7, 0, 10, 4, 1, 8, 6, 5, 3],
+    [8, 3, 5, 0, 10, 9, 4, 7, 2, 6],
+    [6, 1, 10, 4, 0, 8, 2, 3, 7, 5],
+    [7, 10, 1, 3, 5, 0, 9, 8, 4, 2],
+    [3, 6, 7, 9, 8, 2, 0, 1, 10, 4],
+    [5, 4, 8, 2, 7, 3, 10, 0, 6, 1],
+    [1, 9, 6, 5, 3, 4, 7, 10, 0, 2],
+    [10, 2, 4, 8, 6, 5, 1, 2, 3, 0]
+])
+
+print("Kruskals: ", prim_mst(adjacency_matrix))
