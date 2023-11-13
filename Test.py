@@ -101,13 +101,14 @@ avg_kruskals, avg_prims = compareTime(sizes)
 print("Kruskals AVG: ", avg_kruskals, "\nPrims AVG:    ", avg_prims)
 
 # plot quick sort
-#plt.plot(sizes, avg_kruskals, label='QuickSort', color='red', linestyle='-')
+plt.plot(sizes, avg_kruskals, label='Kruskals', color='red', linestyle='-')
 # plot random
-plt.plot(sizes, avg_prims, label='Random', color='blue', linestyle='-')
+plt.plot(sizes, avg_prims, label='Prims', color='blue', linestyle='-')
 
 # labels
+plt.title('Runtime of MST Kruskals vs Prims')
 plt.xlabel('Graph Size (Number of Vertices)')
-plt.ylabel('Average Runtime')
+plt.ylabel('Average Runtime (Seconds)')
 plt.grid = True
 plt.legend()
 
