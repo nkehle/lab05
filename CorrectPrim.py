@@ -5,7 +5,7 @@
 import numpy as np
 
 import BinHeap
-
+import Kruskals
 def prim_mst(adjacency_matrix):
     num_vertices = len(adjacency_matrix)
     que = BinHeap.BinHeap()
@@ -22,7 +22,7 @@ def prim_mst(adjacency_matrix):
 
     while que.heap:  # retrieve nodes from priority queue
         u = que.find_min()
-        e = que.nodes[u[0]]["index"]
+        e = que.nodes[u[0]]["parent"]
         if u[0] not in false_mst:
             false_mst.append(u[0])
             mst.append((e, u[0]))
@@ -34,12 +34,12 @@ def prim_mst(adjacency_matrix):
                 weight = adjacency_matrix[u_label, v]
                 if weight < que.heap[que.nodes[v]["index"]][1]:
                     que.decrease_key(v, weight)
-                    que.nodes[v]["index"] = u[0]
+                    que.nodes[v]["parent"] = u[0]
                     #print(que.nodes[v]["index"])
     return mst
 
 
-"""B  = np.array([
+B  = np.array([
     [0, 3, 2, 0],
     [3, 0, 0, 1],
     [2, 0, 0, 1],
@@ -57,6 +57,7 @@ adjacency_matrix = np.array([
     [5, 4, 8, 2, 7, 3, 10, 0, 6, 1],
     [1, 9, 6, 5, 3, 4, 7, 10, 0, 2],
     [10, 2, 4, 8, 6, 5, 1, 2, 3, 0]
-])"""
+])
 
-#print("Kruskals: ", prim_mst(adjacency_matrix))
+print("pr ims: ", prim_mst(adjacency_matrix))
+print("Kruskals: ", Kruskals.kruskals_mst(adjacency_matrix))
