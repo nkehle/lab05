@@ -15,7 +15,7 @@ class Graph:
     def find_set(self, v):
         if v not in self.dict: # not in a set
             return None
-        if v in self.dict and v == self.dict[v]:  # its label is itself
+        if v in self.dict: # and v == self.dict[v]:  # its label is itself
             return self.dict[v]
 
     def union(self, v, u):

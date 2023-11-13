@@ -8,11 +8,12 @@ import timeit
 
 import numpy as np
 from matplotlib import pyplot as plt
+import matplotlib
+matplotlib.use('TkAgg')
 
 import Disjoint
 import Kruskals
 import Prims
-import matplotlib
 
 def test():
     # Example usage:
@@ -71,7 +72,7 @@ def compareTime(sizes):
         edges = [int(size * density) for density in edge_densities]
 
         for j in range(repeats):
-            arr = np.random.randint(1, size + 1, size=size)
+            arr = getRandomGraph(size,size, 50)
             mid = len(arr) // 2
 
             # run the quick sort and time
@@ -95,12 +96,12 @@ def compareTime(sizes):
 ''' ** PLOTTING THE GRAPHS WITH AVERAGE TIMES ** '''
 
 # Example usage with sizes ranging from 5 to 10
-sizes = range(5, 10)
+sizes = (5, 10, 25, 50, 100)
 avg_kruskals, avg_prims = compareTime(sizes)
 print("Kruskals AVG: ", avg_kruskals, "\nPrims AVG:    ", avg_prims)
 
 # plot quick sort
-plt.plot(sizes, avg_kruskals, label='QuickSort', color='red', linestyle='-')
+#plt.plot(sizes, avg_kruskals, label='QuickSort', color='red', linestyle='-')
 # plot random
 plt.plot(sizes, avg_prims, label='Random', color='blue', linestyle='-')
 
