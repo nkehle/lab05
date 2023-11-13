@@ -16,21 +16,27 @@ import Disjoint
     Returns:
         - adj_matrix (2D array): Adjacency matrix representing the random graph.
     """
-"""def getRandomGraph(n, m, maxWeight):
+def getRandomGraph(n, m, maxWeight, density):
     adj_matrix = np.zeros((n, n), dtype=int)
+    count = 0
+    max = int(((n*m))* 2 * density)
 
-    if(m > n):
+    if (m > n):
         print(adj_matrix)
         return adj_matrix
 
     for i in range(0, m):
         for j in range(0, n):
-            edge_weight = random.randint(1, maxWeight)
+            if count < max:
+                edge_weight = random.randint(1, maxWeight)
+                count += 1
+            else:
+                edge_weight = 0
             adj_matrix[i][j] = edge_weight
             adj_matrix[j][i] = edge_weight
 
     np.fill_diagonal(adj_matrix, 0)
-    return adj_matrix"""
+    return adj_matrix
 
 
 """Converts a graph represented by an adjacency matrix to disjoint sets.
@@ -78,25 +84,19 @@ def adjacency_list(adjacency_matrix):
     return adj_list
 
 
-# used for increasing the densities
-def getRandomGraph(n, m, maxWeight, density):
+# used for not increasing densitites
+"""def getRandomGraph(n, m, maxWeight):
     adj_matrix = np.zeros((n, n), dtype=int)
-    count = 0
-    max = int(((n*m))* 2 * density)
 
-    if (m > n):
+    if(m > n):
         print(adj_matrix)
         return adj_matrix
 
     for i in range(0, m):
         for j in range(0, n):
-            if count < max:
-                edge_weight = random.randint(1, maxWeight)
-                count += 1
-            else:
-                edge_weight = 0
+            edge_weight = random.randint(1, maxWeight)
             adj_matrix[i][j] = edge_weight
             adj_matrix[j][i] = edge_weight
 
     np.fill_diagonal(adj_matrix, 0)
-    return adj_matrix
+    return adj_matrix"""
