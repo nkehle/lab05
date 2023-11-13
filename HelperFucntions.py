@@ -43,7 +43,7 @@ def getRandomGraph(n, m, maxWeight, density):
     Parameters:
         - A (2D array): Adjacency matrix representing the graph.
     Returns:
-        - g1 (Disjoint.Graph): Disjoint sets representing the graph.
+        - g1 (Disjoint.Disjoint): Disjoint sets representing the graph.
     """
 def Graph2DisjointSets(A):
     g1 = Disjoint.Graph()

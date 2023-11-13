@@ -4,6 +4,7 @@
 # Lab 5
 
 import Disjoint
+import mstSupport
 
 """
     Finds the Minimum Spanning Tree (MST) of a connected, undirected graph using Kruskal's algorithm.
@@ -26,7 +27,7 @@ def kruskals_mst(G):
 
     # sort edges by weight
     edges.sort(key=lambda x: x[2])
-    g = Disjoint.Graph()
+    g = mstSupport.Disjoint()
 
     for v in verticies:
         g.make_set(v)
