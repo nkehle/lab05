@@ -9,6 +9,9 @@ import timeit
 import numpy as np
 from matplotlib import pyplot as plt
 import matplotlib
+
+import CorrectPrim
+
 matplotlib.use('TkAgg')
 
 import Disjoint
@@ -73,15 +76,14 @@ def compareTime(sizes):
 
         for j in range(repeats):
             arr = getRandomGraph(size,size, 50)
-            mid = len(arr) // 2
 
             # run the quick sort and time
-            kruskal_time = timeit.timeit(lambda: Kruskals.kruskals_mst(arr), setup="pass", number=1)
-            kruskals_count += kruskal_time
-            kruskals_runtimes.append(kruskal_time)
+            #kruskal_time = timeit.timeit(lambda: Kruskals.kruskals_mst(arr), setup="pass", number=1)
+            #kruskals_count += kruskal_time
+            #kruskals_runtimes.append(kruskal_time)
 
             # run the random and time
-            prims_time = timeit.timeit(lambda: Prims.prim_mst(arr), setup="pass", number=1)
+            prims_time = timeit.timeit(lambda: CorrectPrim.prim_mst(arr), setup="pass", number=1)
             prims_count += prims_time
             prims_runtimes.append(prims_time)
 
